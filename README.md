@@ -8,13 +8,13 @@
 
 ### How to Run
 
-`npx playwright test` - runs all tests
-`npx playwright test --grep @user` - run all the user api tests
-`npx playwright test --grep @happypath` - run all the happy path api tests
-`npx playwright test --grep @errorpath` - run all the error path api tests
-`npx playwright test --repeat-each=2` - to run each test twice
-`npx playwright test --debug` - run in debug mode (all previous are headless)
-`npx playwright test --ui` - run in ui mode
+- `npx playwright test` - runs all tests
+- `npx playwright test --grep @user` - run all the user api tests
+- `npx playwright test --grep @happypath` - run all the happy path api tests
+- `npx playwright test --grep @errorpath` - run all the error path api tests
+- `npx playwright test --repeat-each=2` - to run each test twice
+- `npx playwright test --debug` - run in debug mode (all previous are headless)
+- `npx playwright test --ui` - run in ui mode
 
 ### About the API Submission
 
