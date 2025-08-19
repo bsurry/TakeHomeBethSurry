@@ -38,8 +38,9 @@ I am also using a fixture file to make sure the page objects can be created outs
 
 I have left the default retry logic for CI only: `retries: process.env.CI ? 2 : 0,`
 
-I would NOT normally include the playwright report in a github repository but I have done it for this example (removed `playwright-report` from the git ignore)
+I would NOT normally include the playwright report in a github repository but I have done it for this example (temp removed `playwright-report` from the git ignore to load one up)
 - You will have to load the report locally via: `npx playwright show-report /YOURLOCALPATH/TakeHomeBethSurry/playwright-report`
+- this makes the repo looks like its mostly HTML and not typescript (oops), but I thought folks might like to see the report with the `pw-api-plugin`
 
 I initially had difficulty creating the app-id bc I really had to fight with the site to log in with either google or gihub (I think its mostly broken), it would just bail out of the login. I eventually succeeded when I told Playwright MCP to try to get the token for me and it succeeded. I actually wonder if that was just a function of being in an incognito browser. Note: this was the ONLY use of the MCP in this project. I did not use it in any wayt for generating tests - just trying to get the app id when it was fighting with me
 
