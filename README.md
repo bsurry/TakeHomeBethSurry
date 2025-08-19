@@ -32,14 +32,16 @@ I did tagging on these tests - distinguishing `@happypath` from `@errorpath`. Al
 
 ### About the FE Submission
 
-I created 2 page objects: `todo.ts` and `filters.ts`. In real life these could really be combined but just wanted to illustrate breaking the page object functions into logical groups
+I created 2 page objects: `todo.ts` and `filters.ts`. These could really be combined but just wanted to illustrate breaking the page object functions into logical groups
 
 I am also using a fixture file to make sure the page objects can be created outside of the tests and just passed in, there is also a special fixture in there: `toDoPageWithToDos` that includes the logic to add 3 todos for the start of a test so the test doesnt have to show that logic
 
 I have left the default retry logic for CI only: `retries: process.env.CI ? 2 : 0,`
 
-I would not normally include the playwright report in a github repository but I have done it for this example (removed `playwright-report` from the git ignore)
+I would NOT normally include the playwright report in a github repository but I have done it for this example (removed `playwright-report` from the git ignore)
 - You will have to load the report locally via: `npx playwright show-report /YOURLOCALPATH/TakeHomeBethSurry/playwright-report`
+
+I initially had difficulty creating the app-id bc I really had to fight with the site to log in with either google or gihub (I think its mostly broken), it would just bail out of the login. I eventually succeeded when I told Playwright MCP to try to get the token for me and it succeeded. I actually wonder if that was just a function of being in an incognito browser. Note: this was the ONLY use of the MCP in this project. I did not use it in any wayt for generating tests - just trying to get the app id when it was fighting with me
 
 ## Additional Deliverables
 
@@ -60,14 +62,16 @@ BASE_URL_API=https://dummyapi.io/data/v1
   - I would create custom scripts that include the env file required so we can run the right env command in CI
   - I would record trace file on for only retries (saves resources)
   - I would probably make the retries be only 1 (current default is 2). I havent found a lot of need to retry 2x
+  - We will also need a way to save the secret `APP_ID` somewhere in CI - in pipeline secrets itself or some other secret store. Note I have not done this so the API tests fail in the pipeline in my repo.
 - How would you isolate flaky tests or diagnose failures? 
   - Using a dashboard watch for tests that fail inconsistantly
   - gather up example trace files of both passed and failed
   - dig in and see what you find
-  - helps if you can line the timing up with other observability tools like Datadog
+  - helps if you can line the timing up of failures with other observability tools like Datadog
 - What tools would you integrate for reporting, alerts, or observability?
   - In my previous role I had a lot of success with a test dash in datadog. The really nice this is to be able to line up test runs with other observable things in DD, allowing us to get a full context of the system under test at the time of the failure
   - From CI I would include some kind of slack alerts. If our test suite is very solid I would send it to a general broadcast channel. If we are just setting up and learning about it I would sent it to a test team internal channel to observe until its ready for prime time.
+  - I have also use allure reports in the past and they are nice out of the box, but I liked our custom datadog dash better
 
 ## Specifications (for reference)
 Part 1: Backend Automation 
